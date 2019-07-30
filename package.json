@@ -36,6 +36,8 @@
         "browser-sync": "2.26.7",
         "del": "^4.1.1",
         "gulp": "4.0.2",
-        "merge-stream": "2.0.0"
+        "merge-stream": "2.0.0",
+         "lodash": ">=4.17.13"
     }
+
 }
