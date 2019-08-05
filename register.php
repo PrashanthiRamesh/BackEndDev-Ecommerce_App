@@ -1,6 +1,7 @@
 <?php
 include_once("includes/header.php");
 include_once("includes/database.php");
+include_once("includes/phpmailer.php");
 
 if(isset($_POST['register'])){
     $email=htmlspecialchars($_POST['email']);
@@ -14,11 +15,26 @@ if(isset($_POST['register'])){
 }else{
     $username=htmlspecialchars($_POST['uname']);
     $password=htmlspecialchars(password_hash($_POST['password'], PASSWORD_BCRYPT));
-       echo "can be registered";
+       
        $insert_query="INSERT INTO users(email, userName, userPassword) VALUES ('$email','$username','$password');";
        $query = mysqli_query($connect,$insert_query );
       // echo $username." ".$password." ".$email; 
        if($query){
+        /* Add a recipient. */
+      $mail->addAddress($email, $username);
+
+      /* Set the subject. */
+      $mail->Subject = 'Welcome to our store!';
+      /* Set the mail message body. */
+      $mail->Body = 'Welcome blah!';
+
+      /* Finally send the mail. */
+      if (!$mail->send())
+      {
+        /* PHPMailer error. */
+        echo $mail->ErrorInfo;
+      }
+
        echo "Thank You! you are now registered.";
    }else{
        echo "error during insertion";
