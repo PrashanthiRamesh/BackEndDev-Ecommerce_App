@@ -1,4 +1,7 @@
-
+<?php
+// Initialize the session
+session_start();
+?>
 <head>
 
 <meta charset="utf-8">
@@ -27,20 +30,24 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home
-            <span class="sr-only">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="register.php">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="login.php">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="logout.php">Logout</a>
-        </li>
+      <?php if(isset($_SESSION['loggedin'])){
+       echo  '<li class="nav-item active">
+                <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+                </a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link" href="logout.php">Logout</a>
+              </li>';
+            }else{
+              echo '<li class="nav-item">
+                      <a class="nav-link" href="register.php">Register</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="login.php">Login</a>
+                    </li>';
+                }
+        ?>
       </ul>
     </div>
   </div>

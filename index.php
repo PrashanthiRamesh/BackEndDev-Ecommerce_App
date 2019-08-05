@@ -3,6 +3,14 @@
 <?php
 include_once("includes/header.php");
 include_once("includes/database.php");
+
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(!isset($_SESSION["loggedin"])) {
+  header("location: login.php");
+   exit;
+}
+
+
 ?>
 
   <!-- Page Content -->
